@@ -8,16 +8,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>Welcome</title>
-
 </head>
 <body>
-
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -31,7 +24,4 @@
     </c:if>
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-</body>
 </html>
