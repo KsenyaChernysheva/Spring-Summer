@@ -35,9 +35,9 @@
     </form>
 </div>
 
-<div id="profile">
-    <a href="register.jsp">Register</a>
-    <a href="register.jsp">Profile</a>
+<div id="profil">
+    <a href="${contextPath}/registration">Register</a>
+    <a href="${contextPath}/profile">Profile</a>
 </div>
 
 <div id="map" style="width: 100%; height: 80vh"></div>

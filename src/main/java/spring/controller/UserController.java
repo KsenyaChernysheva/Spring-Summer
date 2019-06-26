@@ -43,7 +43,7 @@ public class UserController {
 
         securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -59,8 +59,13 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
         return "index";
     }
+
+//    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+//    public String profile(Model model) {
+//        return "profile";
+//    }
 }
