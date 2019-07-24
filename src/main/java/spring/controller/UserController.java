@@ -64,8 +64,8 @@ public class UserController {
         return "index";
     }
 
-//    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-//    public String profile(Model model) {
-//        return "profile";
-//    }
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profile(Model model) {
+        return "profile";
+    }
 }
