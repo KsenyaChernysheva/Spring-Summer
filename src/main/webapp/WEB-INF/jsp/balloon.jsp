@@ -11,12 +11,12 @@
     <title>Balloon</title>
 </head>
 <body>
-<form:form method="POST" modelAttribute="reasonForm">
+<form:form method="POST" modelAttribute="userReasonCountry">
     <c:forEach var="reasonItem" items="${reasonList}">
         <form:radiobutton path="id" value="${reasonItem.id}"/>${reasonItem.name} <br/>
     </c:forEach>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    <input type="hidden" name="country" value="${country}" />
 </form:form>
-
 </body>
 </html>

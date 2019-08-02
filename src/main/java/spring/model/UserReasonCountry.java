@@ -3,8 +3,8 @@ package spring.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_reason")
-public class UserReason {
+@Table(name = "user_reason_country")
+public class UserReasonCountry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
