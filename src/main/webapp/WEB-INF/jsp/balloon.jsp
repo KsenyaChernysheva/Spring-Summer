@@ -13,7 +13,8 @@
 <body>
 <form:form method="POST" modelAttribute="reasonForm">
     <c:forEach var="reasonItem" items="${reasonList}">
-        <form:radiobutton path="id" value="${reasonItem.id}"/>${reasonItem.name} <br/>
+        <form:radiobutton path="reason" value="${reasonItem.id}" label="${reasonItem.name}"
+                          checked="${reasonForm.reason.id == reasonItem.id ? 'checked':''}"/><br/>
     </c:forEach>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 </form:form>

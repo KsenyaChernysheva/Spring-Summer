@@ -3,36 +3,39 @@ package spring.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_reason")
+@Table(name = "user_reason",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_user", "country"}))
 public class UserReason {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "id_user")
-    private Long idUser;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
-    @Column(name = "id_reason")
-    private Long idReason;
+    @ManyToOne
+    @JoinColumn(name = "id_reason")
+    private Reason reason;
 
     @Column(name = "country")
     private String country;
 
-    public Long getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getIdReason() {
-        return idReason;
+    public Reason getReason() {
+        return reason;
     }
 
-    public void setIdReason(Long idReason) {
-        this.idReason = idReason;
+    public void setReason(Reason reason) {
+        this.reason = reason;
     }
 
     public String getCountry() {
