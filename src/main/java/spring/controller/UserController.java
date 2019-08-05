@@ -7,13 +7,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import spring.dao.ReasonDao;
+import spring.model.Reason;
 import spring.model.User;
 import spring.service.SecurityService;
 import spring.service.UserService;
 import spring.validator.UserValidator;
 
+import java.util.List;
+
 @Controller
 public class UserController {
+
+
+    @Autowired
+    private ReasonDao reasonDao;
 
     @Autowired
     private UserService userService;
@@ -61,7 +69,22 @@ public class UserController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
+
+        List<Reason> reasons = reasonDao.findAll();
+
+        model.addAttribute("reasonForm", new Reason());
+        model.addAttribute("reasonList", reasons);
         return "index";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String index(@ModelAttribute("reasonForm") Reason reasonForm, Model model) {
+
+        List<Reason> reasons = reasonDao.findAll();
+
+        model.addAttribute("reasonForm", new Reason());
+        model.addAttribute("reasonList", reasons);
+        return "balloon";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)

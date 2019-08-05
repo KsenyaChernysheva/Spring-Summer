@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -15,7 +16,6 @@
 </head>
 <body>
 <div class="container">
-
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -25,14 +25,14 @@
         </h2>
 
     </c:if>
-
 </div>
 <div id="filter" style="width: 100%; height: 10vh; background-color: white">
-    <form method="post">
-        <input type="checkbox" name="option1" value="a1">like nature
-        <input type="checkbox" name="option2" value="a2">like architecture
-        <input type="submit" value="Filter">
-    </form>
+    <form:form method="POST" modelAttribute="reasonForm">
+        <c:forEach var="reasonItem" items="${reasonList}">
+            <form:radiobutton path="id" value="${reasonItem.id}" label="${reasonItem.name}"
+                              checked="${reasonForm.id == reasonItem.id ? 'checked':''}"/><br/>
+        </c:forEach>
+    </form:form>
 </div>
 
 <div id="profil">

@@ -28,7 +28,7 @@ public class MapsController {
     private UserReasonDao userReasonDao;
 
     @RequestMapping(value = "/reasons", method = RequestMethod.GET)
-    public String reason(Model model, @RequestParam String country, Principal principal) {
+    public String reason(Model model, @RequestParam String country, @RequestParam long reasonId, Principal principal) {
 
         User user = userDao.findByUsername(principal.getName());
         UserReason filledByUser = userReasonDao.findByUserAndCountry(user, country);
@@ -38,6 +38,7 @@ public class MapsController {
         }
 
         List<Reason> reasons = reasonDao.findAll();
+        model.addAttribute("reasonCount", userReasonDao.countByCountryAndReasonId(country, reasonId));
         model.addAttribute("reasonForm", filledByUser);
         model.addAttribute("reasonList", reasons);
 

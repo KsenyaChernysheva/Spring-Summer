@@ -8,4 +8,5 @@ public interface UserReasonDao extends JpaRepository<UserReason, Long> {
 
     UserReason findByUserAndCountry(User user, String country);
 
+    int countByCountryAndReasonId(String country, long reasonId);
 }
