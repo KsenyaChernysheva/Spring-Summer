@@ -53,18 +53,33 @@
             var coords = e.get('coords');
             var coordsR = [coords[1], coords[0]];
             console.log(coords);
-            $.get("https://geocode-maps.yandex.ru/1.x/?apikey=e648a3cb-0b28-4f2e-a85e-6e0702cbf3e1&format=json&geocode=" + coordsR.join(","), function (data) {
-
-                var country = data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.CountryName;
-
-                myMap.balloon.open(coords,
-                    {
-                        contentHeader: country,
-                        contentBody: '',
+            fetch("https://geocode-maps.yandex.ru/1.x/?apikey=e648a3cb-0b28-4f2e-a85e-6e0702cbf3e1&format=json&lang=en_US&geocode=" + coordsR.join(","), {
+                method: 'GET',
+                cache: 'no-cache'
+            })
+                .then(response => response.json())
+                .then(data => data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.CountryName)
+                .then(country => {
+                    const reasons = document.getElementsByName("id");
+                    var reasonId = -1;
+                    for (var i = 0; i < reasons.length; i++) {
+                        if (reasons[i].checked) {
+                            reasonId = reasons[i].value;
+                        }
                     }
-                );
-
-            });
+                    return {country: country, reasonId: reasonId}
+                })
+                .then(({country, reasonId}) => fetch("<c:url value="/reasons"/>?country=" + country + "&reasonId=" + reasonId, {
+                    method: 'GET',
+                    cache: 'no-cache'
+                }))
+                .then(response => response.text())
+                .then(htmlData => myMap.balloon.open(coords,
+                    {
+                        contentHeader: 'Данные о стране',
+                        contentBody: htmlData,
+                    }
+                ))
 
         });
     }

@@ -61,6 +61,6 @@ public class MapsController {
         List<Reason> reasons = reasonDao.findAll();
         model.addAttribute("reasonForm", filledByUser);
         model.addAttribute("reasonList", reasons);
-        return "balloon";
+        return "redirect:/";
     }
 }
