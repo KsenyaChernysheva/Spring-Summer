@@ -16,7 +16,8 @@
         <form:radiobutton path="reason" value="${reasonItem.id}" label="${reasonItem.name}"
                           checked="${reasonForm.reason.id == reasonItem.id ? 'checked':''}"/><br/>
     </c:forEach>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    <form:input path="comment" name="comment" type="text" placeholder="Comment"/>
+    <button type="submit">Submit</button>
     <h6>Count people: ${reasonCount}</h6>
 </form:form>
 

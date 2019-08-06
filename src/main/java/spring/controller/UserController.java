@@ -19,7 +19,6 @@ import java.util.List;
 @Controller
 public class UserController {
 
-
     @Autowired
     private ReasonDao reasonDao;
 
@@ -85,10 +84,5 @@ public class UserController {
         model.addAttribute("reasonForm", new Reason());
         model.addAttribute("reasonList", reasons);
         return "balloon";
-    }
-
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profile(Model model) {
-        return "profile";
     }
 }

@@ -1,4 +1,4 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -16,15 +16,10 @@
 </head>
 <body>
 <div class="container">
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
 
-        <h2>Profile ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
+    <a href="${s:mvcUrl('PC#profile').build()}">Profile ${pageContext.request.userPrincipal.name}</a>
+    | <a href="${s:mvcUrl('UC#login').build()}">Logout</a>
 
-    </c:if>
 </div>
 <div id="filter" style="width: 100%; height: 10vh; background-color: white">
     <form:form method="POST" modelAttribute="reasonForm">
@@ -33,11 +28,6 @@
                               checked="${reasonForm.id == reasonItem.id ? 'checked':''}"/><br/>
         </c:forEach>
     </form:form>
-</div>
-
-<div id="profil">
-    <a href="${contextPath}/registration">Register</a>
-    <a href="${contextPath}/profile">Profile</a>
 </div>
 
 <div id="map" style="width: 100%; height: 80vh"></div>

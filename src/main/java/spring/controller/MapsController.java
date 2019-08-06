@@ -51,6 +51,7 @@ public class MapsController {
         UserReason filledByUser = userReasonDao.findByUserAndCountry(user, reasonForm.getCountry());
         if (filledByUser != null) {
             filledByUser.setReason(reasonForm.getReason());
+            filledByUser.setComment(reasonForm.getComment());
         } else {
             filledByUser = reasonForm;
             filledByUser.setUser(user);
