@@ -18,7 +18,10 @@
 <div class="container">
 
     <a href="${s:mvcUrl('PC#profile').build()}">Profile ${pageContext.request.userPrincipal.name}</a>
-    | <a href="${s:mvcUrl('UC#login').build()}">Logout</a>
+    <form id="logoutForm" method="POST" action="<c:url value="/logout"/>">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+    <a onclick="document.forms['logoutForm'].submit()">Logout</a>
 
 </div>
 <div id="filter" style="width: 100%; height: 10vh; background-color: white">
