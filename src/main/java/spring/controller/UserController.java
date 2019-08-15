@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import spring.dao.ReasonDao;
 import spring.model.Reason;
 import spring.model.User;
@@ -50,7 +51,7 @@ public class UserController {
 
         securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 
-        return "redirect:/";
+        return "redirect:" + MvcUriComponentsBuilder.fromMappingName("UC#index").build();
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -77,7 +78,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String index(@ModelAttribute("reasonForm") Reason reasonForm, Model model) {
+    public String balloon(@ModelAttribute("reasonForm") Reason reasonForm, Model model) {
 
         List<Reason> reasons = reasonDao.findAll();
 

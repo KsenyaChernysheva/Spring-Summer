@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import spring.dao.ReasonDao;
 import spring.dao.UserDao;
 import spring.dao.UserReasonDao;
@@ -62,6 +63,6 @@ public class MapsController {
         List<Reason> reasons = reasonDao.findAll();
         model.addAttribute("reasonForm", filledByUser);
         model.addAttribute("reasonList", reasons);
-        return "redirect:/";
+        return "redirect:" + MvcUriComponentsBuilder.fromMappingName("UC#index").build();
     }
 }
